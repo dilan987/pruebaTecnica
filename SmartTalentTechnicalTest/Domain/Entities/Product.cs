@@ -16,7 +16,7 @@ namespace Domain.Entities
         public ProductName Name { get; private set; }
         public ProductDescription Description { get; private set; }
         public ProductPrice Price { get; private set; }
-        public ProductQuantityAvailable QuantityAvailable { get; private set; }
+        public ProductQuantityAvailable QuantityAvailable { get; set; }
         public Product(Guid id)
         {
             this.Id = id;

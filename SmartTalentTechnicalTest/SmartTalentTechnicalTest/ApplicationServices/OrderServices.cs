@@ -18,17 +18,31 @@ namespace SmartTalentTechnicalTest.ApplicationServices
     {
         private readonly IOrderRepository _orderRepository;
         private readonly OrderQueries _orderQueries;
+        private readonly ProductQueries _productQueries;
         private readonly IConfiguration _configuration;
         public OrderServices(IOrderRepository repository,
-            OrderQueries orderQueries, IConfiguration configuration) 
+            OrderQueries orderQueries, 
+            IConfiguration configuration,
+            ProductQueries productQueries
+            ) 
         { 
             this._orderRepository = repository;
             this._orderQueries = orderQueries;
             this._configuration = configuration;
+            this._productQueries = productQueries;
         }
 
         public async Task HandleCommand(Guid userId, CreateOrderCommand createOrder)
         {
+            foreach (var product in createOrder.orderData.data)
+            {
+                var isAvailable = await _productQueries.ValidateProductIdAsync(product.id, product.amount);
+                if (!isAvailable)
+                {
+                    throw new Exception($"Product {product.name} is not available");
+                }
+            }
+
             var newId = Guid.NewGuid();
             var order = new Order(OrderId.Create(newId));
             order.SetUserId(userId);

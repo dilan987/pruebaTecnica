@@ -18,6 +18,20 @@ namespace SmartTalentTechnicalTest.Queries
             var response = await _productRepository.GetProductById(ProductId.Create(id));
             return response;
         }
+
+        public async Task<Boolean> ValidateProductIdAsync(Guid id, double amount)
+        {
+            var response = await _productRepository.GetProductById(ProductId.Create(id));
+            if (response.QuantityAvailable.Value > amount && (response.QuantityAvailable.Value - amount) >= 0)
+            {
+                var newQuantity = response.QuantityAvailable.Value - amount;
+                response.QuantityAvailable = ProductQuantityAvailable.Create(newQuantity);
+                await UpdateProductAsync(response);
+                return true;
+            }
+            return false;
+        }
+
         public async Task<Product[]> GetProductsAsync()
         {
             var response = await _productRepository.GetProducts();
