@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="14.3.0">
+  <zoom_level>10</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>320</x>
+      <y>280</y>
+      <w>210</w>
+      <h>110</h>
+    </coordinates>
+    <panel_attributes>User
+--
+id: uuid  &lt;PK&gt;
+Name: text
+Email: text
+Password: text
+Type: integer
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>750</x>
+      <y>200</y>
+      <w>210</w>
+      <h>110</h>
+    </coordinates>
+    <panel_attributes>Product
+--
+id: uuid  &lt;PK&gt;
+Name: text
+Description: text
+Price: number
+QuantityAvailable: number</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>700</x>
+      <y>530</y>
+      <w>250</w>
+      <h>240</h>
+    </coordinates>
+    <panel_attributes>Order
+--
+id: uuid  &lt;PK&gt;
+UserId: uuid &lt;FK&gt;
+OrderDate: Date
+Status: Boolean
+orderData: Json [
+   {
+       id: uuid  &lt;PK&gt;
+       Name: text
+       Description: text
+       Price: number
+       Amount: number
+   },...
+]
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>420</x>
+      <y>380</y>
+      <w>300</w>
+      <h>290</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+m1=0..*
+m2=1..1
+Carry out &gt;</panel_attributes>
+    <additional_attributes>280.0;260.0;10.0;260.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>830</x>
+      <y>300</y>
+      <w>100</w>
+      <h>250</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+m1=1..*
+m2=1..*
+Contains ^</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;230.0</additional_attributes>
+  </element>
+</diagram>
