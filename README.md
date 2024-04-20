@@ -1,4 +1,4 @@
-##Datos Importantes
+## Datos Importantes
   - El API service y base de datos estan desplegados usando servicios de Azure.
   - Se utilizo una base de datos postgres y dentro de la carpeta /SmartTalentTechnicalTest puedes encontrar una imagen llamada diagramUML.jpg en esta muestro el esquema para la base de datos utilizada.
   - Cualquier detalle adicional estoy totalmente a disposición.
